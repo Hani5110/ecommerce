@@ -113,7 +113,9 @@
             <a href="{{ route('products.index') }}" class="{{ request()->routeIs('products.*') ? 'active' : '' }}">
                 <i class="bi bi-bag-heart"></i> Products
             </a>
-
+               <a href="{{ route('categories.index') }}" class="{{ request()->routeIs('categories.*') ? 'active' : '' }}">
+                <i class="bi bi-bag-heart"></i> Categories
+            </a>
         </div>
     </div>
 
