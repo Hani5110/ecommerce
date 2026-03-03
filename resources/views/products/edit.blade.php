@@ -81,27 +81,40 @@
                         enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
+                  <div class="mb-3">
+    <label for="name" class="form-label">Product Name</label>
+    <input type="text"
+           class="form-control"
+           id="name"
+           name="name"
+           value="{{ old('name', $product->name) }}"
+           required>
+    @error('name')
+        <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
+</div>
+                       <div class="mb-3">
+    <label class="form-label">Product Images</label>
 
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Product Name</label>
-                            <input type="text" class="form-control" id="name" name="name"
-                                value="{{ old('name', $product->name) }}" required />
-                            @error('name')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
+    <!-- Show Existing Images -->
+    @if(!empty($product->images))
+        <div class="mb-2">
+            @foreach($product->images as $image)
+                <img src="{{ asset('storage/'.$image) }}"
+                     width="100"
+                     class="rounded me-2 mb-2"
+                     style="object-fit:cover;">
+            @endforeach
+        </div>
+    @endif
 
-                        <div class="mb-3">
-                            <label for="image" class="form-label">Product Image</label>
-                            <input type="file" class="form-control" id="image" name="image" />
-                            @if ($product->image)
-                                <img src="{{ asset('storage/' . $product->image) }}" alt="Current Image" width="100"
-                                    class="mt-2 rounded" />
-                            @endif
-                            @error('image')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
+    <!-- Upload New Images -->
+    <input type="file" class="form-control" name="images[]" multiple>
+
+    @error('images')
+        <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
+</div>
 
 
 

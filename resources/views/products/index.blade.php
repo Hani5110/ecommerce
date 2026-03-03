@@ -30,9 +30,13 @@
                                 <td class="text-muted fw-medium">#{{ $product->id }}</td>
                                 <td>
                                     <div class="d-flex align-items-center">
-                                        <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}"
-                                            width="50" height="50" class="rounded-3 product-img me-3">
-                                        <span class="fw-semibold">{{ $product->name }}</span>
+@if(!empty($product->images))
+ @foreach($product->images as $image) <img src="{{ asset('storage/'.$image) }}" 
+ width="60" height="60" style="object-fit: cover; border-radius: 6px;">
+  @endforeach 
+  @else <span>No Image</span>
+   @endif
+                       <span class="fw-semibold">{{ $product->name }}</span>
                                     </div>
                                 </td>
                                 <td class="text-muted" style="max-width: 250px;">

@@ -1,3 +1,12 @@
+@if ($errors->any())
+    <div style="color:red;">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 <!doctype html>
 <html lang="en">
 
@@ -75,7 +84,7 @@
 
                         <div class="mb-3">
                             <label for="image" class="form-label">Product Image</label>
-                            <input type="file" class="form-control" id="image" name="image" required>
+                              <input type="file" name="images[]" multiple class="form-control">
                         </div>
 
 
