@@ -15,8 +15,11 @@
 
     <div class="col-md-4">
         <div class="card shadow p-3">
+            @php
+$totalOrders = \App\Models\Order::count();
+@endphp
             <h5>Total Orders</h5>
-            <h3>0</h3>
+           <h3>{{ $totalOrders }}</h3>
         </div>
     </div>
 

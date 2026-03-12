@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\OrderController; 
 
 Route::prefix('v1')->group(function () {
 
@@ -12,5 +13,6 @@ Route::prefix('v1')->group(function () {
         Route::post('/logout', [AuthController::class, 'logout']);
         Route::get('/me', [AuthController::class, 'me']);
     });
-
+      
+    Route::post('/orders', [OrderController::class, 'store']);
 });

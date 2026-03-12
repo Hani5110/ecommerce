@@ -97,27 +97,76 @@
             background: #cbd5e1;
             border-radius: 10px;
         }
+        .sidebar .collapse a {
+    padding-left: 45px;
+    font-size: 14px;
+    
+}
+.sidebar a[aria-expanded="true"] {
+    background: var(--primary-gradient);
+    color: #fff;
+}
     </style>
 </head>
 
 <body>
 
-    <div class="sidebar">
-        <div class="sidebar-header">
-            <h3 class="m-0 text-white"><i class="bi bi-lightning-charge-fill me-2"></i>Haniecom</h3>
-        </div>
-        <div class="mt-4">
-            <a href="{{ url('/dashboard') }}" class="{{ request()->is('dashboard') ? 'active' : '' }}">
-                <i class="bi bi-grid-1x2"></i> Dashboard
-            </a>
-            <a href="{{ route('products.index') }}" class="{{ request()->routeIs('products.*') ? 'active' : '' }}">
-                <i class="bi bi-bag-heart"></i> Products
-            </a>
-               <a href="{{ route('categories.index') }}" class="{{ request()->routeIs('categories.*') ? 'active' : '' }}">
-                <i class="bi bi-bag-heart"></i> Categories
-            </a>
-        </div>
+   <div class="sidebar">
+
+    <div class="sidebar-header">
+        <h3 class="m-0 text-white">
+            <i class="bi bi-lightning-charge-fill me-2"></i>Haniecom
+        </h3>
     </div>
+
+    <div class="mt-4">
+
+        <a href="{{ url('/dashboard') }}" class="{{ request()->is('dashboard') ? 'active' : '' }}">
+            <i class="bi bi-grid-1x2"></i> Dashboard
+        </a>
+
+        <a href="{{ route('products.index') }}" class="{{ request()->routeIs('products.*') ? 'active' : '' }}">
+            <i class="bi bi-bag-heart"></i> Products
+        </a>
+
+        <a href="{{ route('categories.index') }}" class="{{ request()->routeIs('categories.*') ? 'active' : '' }}">
+            <i class="bi bi-grid"></i> Categories
+        </a>
+
+  
+
+<a data-bs-toggle="collapse"  href="{{ route('admin.orders') }}""
+   class="{{ request()->routeIs('admin.orders*') ? 'active' : '' }}">
+    <i class="bi bi-bag-check"></i> Orders
+</a>
+
+<div class="collapse {{ request()->routeIs('admin.orders*') ? 'show' : '' }}" id="ordersMenu">
+
+    <a href="{{ route('admin.orders') }}">
+        <i class="bi bi-list"></i> All Orders
+    </a>
+
+    <a href="{{ route('admin.orders.filter','pending') }}">
+        <i class="bi bi-hourglass-split"></i> Pending Orders
+    </a>
+
+    <a href="{{ route('admin.orders.filter','dispatched') }}">
+        <i class="bi bi-truck"></i> Dispatched Orders
+    </a>
+
+    <a href="{{ route('admin.orders.filter','delivered') }}">
+        <i class="bi bi-check-circle"></i> Delivered Orders
+    </a>
+
+    <a href="{{ route('admin.orders.filter','returned') }}">
+        <i class="bi bi-arrow-return-left"></i> Returned Orders
+    </a>
+
+</div>
+
+    </div>
+
+</div>
 
     <div class="content animate__animated animate__fadeIn">
         @yield('content')

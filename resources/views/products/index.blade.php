@@ -25,17 +25,25 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($products as $product)
-                            <tr>
-                                <td class="text-muted fw-medium">#{{ $product->id }}</td>
-                                <td>
-                                    <div class="d-flex align-items-center">
-@if(!empty($product->images))
- @foreach($product->images as $image) <img src="{{ asset('storage/'.$image) }}" 
- width="60" height="60" style="object-fit: cover; border-radius: 6px;">
-  @endforeach 
-  @else <span>No Image</span>
-   @endif
+                 @foreach ($products as $product)
+          <tr onclick="window.location='{{ route('products.show', $product->id) }}'" style="cursor:pointer;">
+               <td class="text-muted fw-medium">#{{ $product->id }}</td>
+                  <td>
+                     <div class="d-flex align-items-center">
+@if(!empty($product->images) && count($product->images) > 0)
+
+<img 
+src="{{ asset('storage/'.$product->images[0]) }}" 
+width="60" 
+height="60"
+style="object-fit: cover; border-radius: 8px;"
+>
+
+@else
+
+<span>No Image</span>
+
+@endif
                        <span class="fw-semibold">{{ $product->name }}</span>
                                     </div>
                                 </td>
